@@ -10,7 +10,7 @@ import 'dart:io';
 /// A [Widget] for editing tag similar to Google's Gmail
 /// email address input widget in the iOS app.
 class TagEditor extends StatefulWidget {
-  const TagEditor({
+  TagEditor({
     required this.length,
     this.minTextFieldWidth = 160.0,
     this.tagSpacing = 4.0,
@@ -35,7 +35,7 @@ class TagEditor extends StatefulWidget {
     this.autofocus = false,
     this.autocorrect = false,
     this.enableSuggestions = true,
-    this.maxLines = 1,
+    this.maxLines,
     this.resetTextOnSubmitted = false,
     this.onSubmitted,
     this.inputFormatters,
@@ -98,7 +98,7 @@ class TagEditor extends StatefulWidget {
   final bool autofocus;
   final bool autocorrect;
   final bool enableSuggestions;
-  final int maxLines;
+  int? maxLines;
   final List<TextInputFormatter>? inputFormatters;
   final bool readOnly;
   final Brightness? keyboardAppearance;
