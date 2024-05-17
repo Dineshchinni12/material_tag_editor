@@ -228,46 +228,51 @@ class _TagsEditorState extends State<TagEditor> {
           ))
         : widget.inputDecoration;
 
-    final tagEditorArea = Container(
-      child: TagLayout(
-        delegate: TagEditorLayoutDelegate(
-          length: widget.length,
-          minTextFieldWidth: widget.minTextFieldWidth,
-          spacing: widget.tagSpacing,
-        ),
-        children: List<Widget>.generate(
-              widget.length,
-              (index) => LayoutId(
-                id: TagEditorLayoutDelegate.getTagId(index),
-                child: widget.tagBuilder(context, index),
-              ),
-            ) +
-            <Widget>[
-              LayoutId(
-                id: TagEditorLayoutDelegate.textFieldId,
-                child: TextField(
-                  style: widget.textStyle,
-                  focusNode: _focusNode,
-                  enabled: widget.enabled,
-                  controller: _textFieldController,
-                  keyboardType: widget.keyboardType,
-                  keyboardAppearance: widget.keyboardAppearance,
-                  textCapitalization: widget.textCapitalization,
-                  textInputAction: widget.textInputAction,
-                  autocorrect: widget.autocorrect,
-                  textAlign: widget.textAlign,
-                  textDirection: widget.textDirection,
-                  readOnly: widget.readOnly,
-                  autofocus: widget.autofocus,
-                  enableSuggestions: widget.enableSuggestions,
-                  maxLines: widget.maxLines,
-                  decoration: decoration,
-                  onChanged: _onTextFieldChange,
-                  onSubmitted: _onSubmitted,
-                  inputFormatters: widget.inputFormatters,
+    final tagEditorArea = GestureDetector(
+      onTap: () {
+        FocusScope.of(context).requestFocus(FocusNode());
+      },
+      child: Container(
+        child: TagLayout(
+          delegate: TagEditorLayoutDelegate(
+            length: widget.length,
+            minTextFieldWidth: widget.minTextFieldWidth,
+            spacing: widget.tagSpacing,
+          ),
+          children: List<Widget>.generate(
+                widget.length,
+                (index) => LayoutId(
+                  id: TagEditorLayoutDelegate.getTagId(index),
+                  child: widget.tagBuilder(context, index),
                 ),
-              )
-            ],
+              ) +
+              <Widget>[
+                LayoutId(
+                  id: TagEditorLayoutDelegate.textFieldId,
+                  child: TextField(
+                    style: widget.textStyle,
+                    focusNode: _focusNode,
+                    enabled: widget.enabled,
+                    controller: _textFieldController,
+                    keyboardType: widget.keyboardType,
+                    keyboardAppearance: widget.keyboardAppearance,
+                    textCapitalization: widget.textCapitalization,
+                    textInputAction: widget.textInputAction,
+                    autocorrect: widget.autocorrect,
+                    textAlign: widget.textAlign,
+                    textDirection: widget.textDirection,
+                    readOnly: widget.readOnly,
+                    autofocus: widget.autofocus,
+                    enableSuggestions: widget.enableSuggestions,
+                    maxLines: widget.maxLines,
+                    decoration: decoration,
+                    onChanged: _onTextFieldChange,
+                    onSubmitted: _onSubmitted,
+                    inputFormatters: widget.inputFormatters,
+                  ),
+                )
+              ],
+        ),
       ),
     );
 
