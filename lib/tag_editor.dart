@@ -230,7 +230,7 @@ class _TagsEditorState extends State<TagEditor> {
 
     final tagEditorArea = GestureDetector(
       onTap: () {
-        FocusScope.of(context).requestFocus(FocusNode());
+        _onFocusChanged();
       },
       child: Container(
         child: TagLayout(
